@@ -1,0 +1,132 @@
+@import url("https://fonts.googleapis.com/css2?family=Roboto:wght@500&display=swap");
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+:root {
+  --main-bg-color: #f05b56;
+  --bg-color-elements: rgba(255, 255, 255, 0.1);
+}
+
+body {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-evenly;
+  background-color: var(--main-bg-color);
+  height: 100vh;
+  font-family: "Roboto", sans-serif;
+}
+
+a {
+  text-decoration: none;
+}
+
+p,
+a {
+  color: white;
+}
+
+#pomodoro {
+  grid-area: pomodoro;
+}
+
+#short {
+  grid-area: short;
+}
+
+#long {
+  grid-area: long;
+}
+
+#timer {
+  grid-area: timer;
+}
+
+#timer,
+#short,
+#long,
+#pomodoro,
+#btn {
+  justify-self: center;
+  align-self: center;
+}
+
+#btn {
+  grid-area: boton;
+}
+
+#settings,
+#container {
+  background-color: var(--bg-color-elements);
+  border-radius: 10px;
+}
+
+#settings {
+  width: 100px;
+  height: 30px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+#settings:hover {
+  filter: brightness(95%);
+  cursor: pointer;
+}
+#settings p {
+  margin-left: 0.5rem;
+  margin-top: 2px;
+}
+
+#settings i {
+  color: white;
+}
+#container {
+  width: 500px;
+  height: 250px;
+  display: grid;
+  padding: 1rem;
+  grid-template-columns: repeat(3, 1fr);
+  grid-template-rows: 1fr 2fr 1fr;
+  grid-template-areas: "pomodoro short long" "timer timer timer" ". boton .";
+}
+
+#timer {
+  font-size: 50px;
+}
+
+#btn {
+  border: none;
+  border-radius: 5px;
+  color: var(--main-bg-color);
+  font-weight: bold;
+  font-size: larger;
+  background-color: white;
+  width: 120px;
+  height: 40px;
+}
+
+#btn:hover {
+  cursor: pointer;
+  filter: brightness(95%);
+}
+
+.set.active {
+  background-color: rgba(0, 0, 0, 0.15);
+  width: 100px;
+  height: 30px;
+  border-radius: 8px;
+}
+
+.set {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.set:hover {
+  cursor: pointer;
+}
