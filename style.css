@@ -18,6 +18,7 @@ body {
   background-color: var(--main-bg-color);
   height: 100vh;
   font-family: "Roboto", sans-serif;
+  transition: background-color 1s ease-in-out;
 }
 
 a {
@@ -107,6 +108,7 @@ a {
   background-color: white;
   width: 120px;
   height: 40px;
+  transition: color 1s ease-in-out;
 }
 
 #btn:hover {
