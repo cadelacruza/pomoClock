@@ -11,6 +11,19 @@ const boton = document.querySelector("#btn");
 const pomodoro = document.querySelector("#pomodoro");
 const short = document.querySelector("#short");
 const long = document.querySelector("#long");
+const modal = document.querySelector("#modal");
+const settings = document.querySelector("#settings");
+const closeModal = document.querySelector("#close");
+
+closeModal.addEventListener("click", () => {
+  modal.classList.remove("active");
+  document.querySelector(".modal-wrapper").style.display = "none";
+});
+
+settings.addEventListener("click", () => {
+  modal.classList.add("active");
+  document.querySelector(".modal-wrapper").style.display = "block";
+});
 
 // The varibale timeSet is goin to be what's passed onto timer()
 //I gotta update timeSet to change when:

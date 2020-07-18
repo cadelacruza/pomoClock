@@ -30,6 +30,52 @@
       <a href="https://uzu.works/" target="_blank"> Yuya Uzu </a> made by
       <a href="https://github.com/cadelacruza" target="_blank">Carlos</a>
     </div>
+
+    <div class="modal-wrapper">
+      <div id="modal" class="some">
+        <div id="modal-title">
+          <h1>TIMER SETTING</h1>
+          <span id="close">&times;</span>
+        </div>
+        <hr />
+
+        <div>
+          <p>Time (minutes)</p>
+        </div>
+        <div id="modal-time">
+          <div class="setTimer">
+            <label for="pom">Pomodoro</label>
+            <input type="number" min="1" step="1" id="pom" />
+          </div>
+          <div class="setTimer">
+            <label for="shorter">Short Break</label>
+            <input type="number" min="1" step="1" id="shorter" />
+          </div>
+          <div class="setTimer">
+            <label for="longer">Long Break</label>
+            <input type="number" id="pom" />
+          </div>
+        </div>
+
+        <hr />
+
+        <div id="modal-toggle">
+          <p>Auto start next session?</p>
+
+          <label class="switch">
+            <input type="checkbox" />
+            <span class="slider round"></span>
+          </label>
+        </div>
+        <hr />
+
+        <div id="modal-volume">
+          <p>Volume</p>
+          <input type="range" min="0.01" max="1" step="0.01" value="50" />
+        </div>
+      </div>
+    </div>
+
     <script src="app.js"></script>
   </body>
 </html>
