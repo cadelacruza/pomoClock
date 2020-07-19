@@ -1,6 +1,6 @@
 //Values for timer()
 let countdown;
-let timeSet = 1500;
+let variable;
 
 //Elements from the DOM
 const display = document.querySelector("#timer");
@@ -14,11 +14,71 @@ const long = document.querySelector("#long");
 const modal = document.querySelector("#modal");
 const settings = document.querySelector("#settings");
 const closeModal = document.querySelector("#close");
+const timePom = document.querySelector("#pom");
+const timeShort = document.querySelector("#shorter");
+const timeLong = document.querySelector("#longer");
 
-closeModal.addEventListener("click", () => {
+let timeSet = toSeconds(pomodoro.dataset.min);
+window.onload = resetInCase;
+timePom.oninput = changePom;
+timeShort.oninput = changeShort;
+timeLong.oninput = changeLong;
+
+function resetInCase() {
+  timePom.value = "25";
+  timeShort.value = "5";
+  timeLong.value = "10";
+}
+
+function changePom(e) {
+  pomodoro.dataset.min = timePom.value;
+
+  if (pomodoro.classList.contains("active")) {
+    clearInterval(countdown);
+    variable = undefined;
+    display.textContent = `${pomodoro.dataset.min}:00`;
+    timeSet = toSeconds(pomodoro.dataset.min);
+    boton.textContent = "START";
+  }
+
+  console.log(typeof pomodoro.dataset.min);
+}
+
+function changeShort(e) {
+  short.dataset.min = timeShort.value;
+
+  if (short.classList.contains("active")) {
+    clearInterval(countdown);
+    variable = undefined;
+    display.textContent = `${short.dataset.min}:00`;
+    boton.textContent = "START";
+    timeSet = toSeconds(short.dataset.min);
+  }
+
+  console.log(typeof short.dataset.min);
+}
+
+function changeLong(e) {
+  long.dataset.min = timeLong.value;
+
+  if (long.classList.contains("active")) {
+    clearInterval(countdown);
+    variable = undefined;
+    display.textContent = `${long.dataset.min}:00`;
+    boton.textContent = "START";
+    timeSet = toSeconds(long.dataset.min);
+  }
+
+  console.log(typeof long.dataset.min);
+}
+
+closeModal.addEventListener("click", closeIt);
+document.querySelector("#boton-m").addEventListener("click", closeIt);
+
+function closeIt(e) {
   modal.classList.remove("active");
   document.querySelector(".modal-wrapper").style.display = "none";
-});
+}
 
 settings.addEventListener("click", () => {
   modal.classList.add("active");
@@ -30,11 +90,10 @@ settings.addEventListener("click", () => {
 // 1.- I click on pomodoro/short/long
 // 2.- I change the amount of minutes the session will take (settings)
 
-function setTime(valueInMinutes) {
+function toSeconds(valueInMinutes) {
   return parseInt(valueInMinutes * 60);
 }
 
-let variable;
 let prueba10 = callClosure();
 
 boton.addEventListener("click", prueba10);
@@ -78,7 +137,7 @@ body.addEventListener("click", (e) => {
     body.style.backgroundColor = "#4ca6a9";
     btn.style.color = "#4ca6a9";
     display.textContent = `${short.dataset.min}:00`;
-    timeSet = setTime(short.dataset.min);
+    timeSet = toSeconds(short.dataset.min);
     console.log(timeSet);
     boton.textContent = "START";
   } else if (e.target.id === "pomodoro") {
@@ -87,7 +146,7 @@ body.addEventListener("click", (e) => {
     body.style.backgroundColor = "#f05b56";
     btn.style.color = "#f05b56";
     display.textContent = `${pomodoro.dataset.min}:00`;
-    timeSet = setTime(pomodoro.dataset.min);
+    timeSet = toSeconds(pomodoro.dataset.min);
     console.log(timeSet);
     boton.textContent = "START";
   } else if (e.target.id === "long") {
@@ -96,7 +155,7 @@ body.addEventListener("click", (e) => {
     body.style.backgroundColor = "#498fc1";
     btn.style.color = "#498fc1";
     display.textContent = `${long.dataset.min}:00`;
-    timeSet = setTime(long.dataset.min);
+    timeSet = toSeconds(long.dataset.min);
     console.log(timeSet);
 
     boton.textContent = "START";

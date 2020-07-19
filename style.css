@@ -204,7 +204,7 @@ a {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding-bottom: 2rem;
+  padding-bottom: 0.5rem;
 }
 
 #modal #modal-volume input {
@@ -271,4 +271,23 @@ input:checked + .slider:before {
 
 .slider.round:before {
   border-radius: 50%;
+}
+
+#modal-button {
+  display: flex;
+  justify-content: flex-end;
+}
+
+#modal-button #boton-m {
+  color: white;
+  border: none;
+  background-color: #1b1e2c;
+  border-radius: 5px;
+  width: 80px;
+  height: 40px;
+}
+
+#modal-button #boton-m:hover {
+  cursor: pointer;
+  filter: brightness(120%);
 }
