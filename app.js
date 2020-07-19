@@ -75,12 +75,28 @@ function changeLong(e) {
   console.log(typeof long.dataset.min);
 }
 
-closeModal.addEventListener("click", closeIt);
-document.querySelector("#boton-m").addEventListener("click", closeIt);
+closeModal.addEventListener("click", () => {
+  if (checkIt()) {
+    closeIt();
+  }
+});
+document.querySelector("#boton-m").addEventListener("click", () => {
+  if (checkIt()) {
+    closeIt();
+  }
+});
 
 function closeIt(e) {
   modal.classList.remove("active");
   document.querySelector(".modal-wrapper").style.display = "none";
+}
+
+function checkIt() {
+  if (timePom.value <= 0 || timeShort.value <= 0 || timeLong.value <= 0) {
+    return false;
+  } else {
+    return true;
+  }
 }
 
 settings.addEventListener("click", () => {
