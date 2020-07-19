@@ -100,6 +100,7 @@ function closeIt(e) {
 function checkIt() {
   if (
     timePom.value <= 0 ||
+    timePom.value % 1 !== 0 ||
     timeShort.value % 1 !== 0 ||
     timeLong.value % 1 !== 0 ||
     timeShort.value <= 0 ||

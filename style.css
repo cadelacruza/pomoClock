@@ -291,3 +291,15 @@ input:checked + .slider:before {
   cursor: pointer;
   filter: brightness(120%);
 }
+
+@media screen and (max-width: 500px) {
+  #container,
+  #about,
+  #modal.active {
+    width: 340px;
+  }
+
+  #about {
+    text-align: center;
+  }
+}
