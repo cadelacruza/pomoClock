@@ -19,7 +19,12 @@ const timeShort = document.querySelector("#shorter");
 const timeLong = document.querySelector("#longer");
 const toggleBtn = document.querySelector("#check");
 
-toggleBtn.addEventListener("click", () => toggleBtn.classList.toggle("active"));
+const volumen = document.querySelector("#volume");
+
+toggleBtn.addEventListener("click", () => {
+  toggleBtn.classList.toggle("active");
+  console.log(toggleBtn.value);
+});
 
 let timeSet = toSeconds(pomodoro.dataset.min);
 window.onload = resetInCase;
@@ -31,6 +36,7 @@ function resetInCase() {
   timePom.value = "25";
   timeShort.value = "5";
   timeLong.value = "10";
+  toggleBtn.checked = false;
 }
 
 function changePom(e) {
@@ -92,7 +98,13 @@ function closeIt(e) {
 }
 
 function checkIt() {
-  if (timePom.value <= 0 || timeShort.value <= 0 || timeLong.value <= 0) {
+  if (
+    timePom.value <= 0 ||
+    timeShort.value % 1 !== 0 ||
+    timeLong.value % 1 !== 0 ||
+    timeShort.value <= 0 ||
+    timeLong.value <= 0
+  ) {
     return false;
   } else {
     return true;
@@ -205,8 +217,47 @@ function timer(seconds) {
     const remainingTime = Math.round((target - Date.now()) / 1000);
 
     if (remainingTime < 0) {
+      audio.volume = volumen.value;
       audio.play();
       clearInterval(countdown);
+
+      if (pomodoro.classList.contains("active")) {
+        variable = undefined;
+        pomodoro.classList.remove("active");
+        short.classList.add("active");
+
+        body.style.backgroundColor = "#4ca6a9";
+        btn.style.color = "#4ca6a9";
+        display.textContent = `${short.dataset.min}:00`;
+        timeSet = toSeconds(short.dataset.min);
+
+        if (toggleBtn.classList.contains("active")) {
+          timer(timeSet);
+          boton.textContent = "STOP";
+        } else {
+          boton.textContent = "START";
+        }
+      } else if (
+        short.classList.contains("active") ||
+        long.classList.contains("active")
+      ) {
+        short.classList.remove("active");
+        long.classList.remove("active");
+        pomodoro.classList.add("active");
+        variable = undefined;
+
+        body.style.backgroundColor = "#f05b56";
+        btn.style.color = "#f05b56";
+        display.textContent = `${pomodoro.dataset.min}:00`;
+        timeSet = toSeconds(pomodoro.dataset.min);
+
+        if (toggleBtn.classList.contains("active")) {
+          timer(timeSet);
+          boton.textContent = "STOP";
+        } else {
+          boton.textContent = "START";
+        }
+      }
       return;
     }
     displayTimeLeft(remainingTime);
