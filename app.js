@@ -7,8 +7,8 @@ const display = document.querySelector("#timer");
 const allbtns = document.querySelectorAll(".set");
 const body = document.querySelector("body");
 const boton = document.querySelector("#btn");
-
 const pomodoro = document.querySelector("#pomodoro");
+const audio = document.querySelector("#audio");
 const short = document.querySelector("#short");
 const long = document.querySelector("#long");
 const modal = document.querySelector("#modal");
@@ -17,6 +17,9 @@ const closeModal = document.querySelector("#close");
 const timePom = document.querySelector("#pom");
 const timeShort = document.querySelector("#shorter");
 const timeLong = document.querySelector("#longer");
+const toggleBtn = document.querySelector("#check");
+
+toggleBtn.addEventListener("click", () => toggleBtn.classList.toggle("active"));
 
 let timeSet = toSeconds(pomodoro.dataset.min);
 window.onload = resetInCase;
@@ -186,6 +189,7 @@ function timer(seconds) {
     const remainingTime = Math.round((target - Date.now()) / 1000);
 
     if (remainingTime < 0) {
+      audio.play();
       clearInterval(countdown);
       return;
     }
